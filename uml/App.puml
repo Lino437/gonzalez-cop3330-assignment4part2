@@ -1,7 +1,7 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-class TodoListManager {
+class TodoManager {
     main()
     start()
 }
@@ -15,44 +15,23 @@ class TodoController{
     saveButtonClicked()
     loadButtonClicked()
     display
+        addItem()
+        removeItem()
+        editDescription()
+        editDueDate()
+        sortByDueDate()
+        toString()
 }
 
-class ListItemsController{
-    model: ListItemsDisplay
-    'javafx event handlers
-    addButtonClicked()
-    removeButtonClicked()
-    editDueDateButtonClicked()
-    editDescriptionButtonClicked()
-    displayAllButtonCLicked()
-    displayCompletedButtonCLicked()
-    displayUncompletedButtonCLicked()
-    saveButtonClicked
-
+class Item {
+    completed
+    description
+    dueDate
 }
 
-class TodoListModel {
-    ListTittle: String
-
-    addItem()
-    removeItem()
-    editDescription()
-    editDueDate()
-    sortByDueDate()
-    toString()
-}
-
-class ListItem {
-    completed: boolean
-    description: String
-    due date: object format MM-DD-YYYY
-}
-
-org.javafx.Application <|- TodoListManager
-TodoListManager o--> TodoController
-TodoController - ListItemsController
-TodoController o--> TodoListModel
-ListItemsController o--> ListItem
+org.javafx.Application <|- TodoManager
+TodoManager o--> TodoController
+TodoController <-- Item
 
 
 
