@@ -5,8 +5,10 @@ import javafx.stage.FileChooser;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class FileManager {
@@ -47,11 +49,11 @@ public class FileManager {
         ArrayList<String> dataListFinal = new ArrayList<>();
 
         // Given an ArrayList Format to another ArrayList
-        for (String s : dataList) {
-            String[] res = s.split("[,]", 0);
-            for (String re : res) {
-                if (!re.equals(" ")) {
-                    dataListFinal.add(re);
+        for (int i = 0; i < dataList.size(); i++) {
+            String[] res = dataList.get(i).split("[,]", 0);
+            for (int j = 0; j < res.length; j++) {
+                if (!res[j].equals(" ")) {
+                    dataListFinal.add(res[j]);
                 }
             }
         }

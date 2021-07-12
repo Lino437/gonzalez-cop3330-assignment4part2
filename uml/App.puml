@@ -9,30 +9,45 @@ class TodoManager {
 class TodoController{
     model: TodoListModel
     'javafx event handlers
-    addButtonClicked()
-    removeButtonClicked()
-    editButtonClicked()
-    saveButtonClicked()
-    loadButtonClicked()
-    display
-        addItem()
-        removeItem()
-        editDescription()
-        editDueDate()
-        sortByDueDate()
-        toString()
+    initialize()
+    saveListItems()
+    loadListItems()
+    clearItem()
+    displayAll()
+    displayCompleted()
+    displayUncompleted()
+    addItem()
+    removeItem()
+    editDescription()
+    editDueDate()
+    helpButton()
+}
+
+class FileManager {
+    fileChooser()
+    openFileLoadData()
+    getDataFromFile()
+    openFileSaveData()
+    readFile()
+    getDataFromTableView()
+}
+
+class TableManager{
+    isClear()
 }
 
 class Item {
-    completed
-    description
-    dueDate
+    -completed
+    -description
+    -dueDate
 }
 
 org.javafx.Application <|- TodoManager
 TodoManager o--> TodoController
-TodoController <-- Item
-
+TodoController <--o Item
+TodoController <--> FileManager
+TodoController <- TableManager
+Item o-> FileManager
 
 
 @enduml

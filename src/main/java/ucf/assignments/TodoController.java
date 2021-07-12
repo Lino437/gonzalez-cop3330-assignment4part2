@@ -26,24 +26,23 @@ A user shall be able to save the list (and all of its items) to external storage
 A user shall be able to load a list (and all of its items) from external storage
 
 The developer shall provide a help screen with directions on how to use the application.
-The help screen shall describe how to execute each behavioral requirement provided by the application (e.g. add an item, remove an item, edit an item, etc)
+The help screen shall describe how to execute each behavioral requirement provided by the application (e.g. add an item,
+ remove an item, edit an item, etc)
 The help screen shall include a dedication to "Rey"
-This help screen shall be provided as either a dedicated window within the application, or a markdown file called `readme.md` on your GitHub repository for the project.)
+This help screen shall be provided as either a dedicated window within the application, or a markdown file called `readme.md`
+  on your GitHub repository for the project.)
  */
 
 package ucf.assignments;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Month;
@@ -69,7 +68,24 @@ public class TodoController implements Initializable {
     @FXML
     private DatePicker dueDateDatePicker;
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // set up the columns in the table
+        doneColumn.setCellValueFactory(new PropertyValueFactory<>("done"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        dueDateColumn.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
 
+        // load data
+        tableView.setItems(getPeople());
+
+        // Allowing description and to be editable
+        tableView.setEditable(true);
+        doneColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        // This allows the multiple rows to be selected
+        tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    }
 
     // This method allow the user to edit the description for an Item
     public void changeDescriptionCellEvent(TableColumn.CellEditEvent editedCell) {
@@ -111,24 +127,7 @@ public class TodoController implements Initializable {
     }
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // set up the columns in the table
-        doneColumn.setCellValueFactory(new PropertyValueFactory<>("done"));
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        dueDateColumn.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
 
-        // load data
-        tableView.setItems(getPeople());
-
-        // Allowing description and to be editable
-        tableView.setEditable(true);
-        doneColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-
-        // This allows the multiple rows to be selected
-        tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-    }
 
     // load a file to the tableView
     @FXML
@@ -201,9 +200,6 @@ public class TodoController implements Initializable {
     @FXML
     public ObservableList<Item> getPeople() {
         ObservableList<Item> item = FXCollections.observableArrayList();
-        item.add(new Item("yes", "application 3330", LocalDate.of(2021, Month.JULY, 11)));
-        item.add(new Item("no","Final Exam CDA 3103", LocalDate.of(2021, Month.AUGUST, 1)));
-        item.add(new Item("no", "Programming Assignment CIS 3360", LocalDate.of(2021, Month.JULY, 24)));
         return item;
     }
 
