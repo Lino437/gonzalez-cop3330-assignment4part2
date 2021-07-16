@@ -19,35 +19,37 @@
    <children>
       <AnchorPane prefHeight="780.0" prefWidth="600.0">
          <children>
-            <Button layoutX="16.0" layoutY="741.0" mnemonicParsing="false" onAction="#newItemButtonPushed" text="Add New Item" />
-            <Button layoutX="274.0" layoutY="741.0" mnemonicParsing="false" onAction="#deleteButtonPushed" text="Delete Item" />
-            <Button layoutX="535.0" layoutY="741.0" mnemonicParsing="false" onAction="#clearButtonClear" text="Clear" />
+            <Button layoutX="25.0" layoutY="741.0" mnemonicParsing="false" onAction="#deleteButtonPushed" text="Delete Item" />
+            <Button layoutX="111.0" layoutY="741.0" mnemonicParsing="false" onAction="#clearButtonClear" text="Clear" />
             <VBox layoutX="12.0" layoutY="46.0" prefHeight="692.0" prefWidth="573.0">
                <children>
                   <TableView fx:id="tableView" prefHeight="702.0" prefWidth="573.0">
                     <columns>
-                        <TableColumn fx:id="doneColumn" prefWidth="47.0" text="done" />
-                      <TableColumn fx:id="descriptionColumn" minWidth="0.0" onEditCommit="#changeDescriptionCellEvent" prefWidth="368.0" text="Description" />
-                        <TableColumn fx:id="dueDateColumn" onEditCommit="#changeDueDateCellEvent" prefWidth="157.0" text="Due Date" />
+                        <TableColumn fx:id="doneColumn" onEditCommit="#changeDoneCellEvent" prefWidth="35.0" text="done" />
+                      <TableColumn fx:id="descriptionColumn" minWidth="0.0" onEditCommit="#changeDescriptionCellEvent" prefWidth="428.0" text="Description" />
+                        <TableColumn fx:id="dueDateColumn" onEditCommit="#changeDueDateCellEvent" prefWidth="109.0" text="Due Date" />
                     </columns>
                   </TableView>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="doneTextField" prefHeight="25.0" prefWidth="63.0" promptText="done?">
-                           <HBox.margin>
-                              <Insets top="10.0" />
-                           </HBox.margin>
-                        </TextField>
-                        <TextField fx:id="descriptionTextField" prefHeight="25.0" prefWidth="374.0" promptText="Description">
+                        <TextField fx:id="descriptionTextField" prefHeight="25.0" prefWidth="292.0" promptText="Description">
                            <HBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </HBox.margin>
                         </TextField>
-                        <DatePicker fx:id="dueDateDatePicker" prefHeight="25.0" prefWidth="165.0" promptText="Due Date">
+                        <DatePicker fx:id="dueDateDatePicker" prefHeight="25.0" prefWidth="131.0" promptText="Due Date">
                            <HBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </HBox.margin>
                         </DatePicker>
+                        <Button mnemonicParsing="false" onAction="#newItemButtonPushed" text="Add New Item">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
                      </children>
                   </HBox>
                </children>

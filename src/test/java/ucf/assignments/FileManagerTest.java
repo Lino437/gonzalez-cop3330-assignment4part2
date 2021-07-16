@@ -1,5 +1,6 @@
 package ucf.assignments;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +27,8 @@ class FileManagerTest extends TodoListManager{
 
     @FXML
     private TableView<Item> tableView;
+    public final ObservableList<Item> dataList = FXCollections.observableArrayList();
+
 
     @Test
     @FXML
@@ -35,7 +38,7 @@ class FileManagerTest extends TodoListManager{
 
     @Test
     void openFileLoadData() {
-        FileManager.openFileLoadData("C:\\Users\\Jose\\IdeaProjects\\Application part 2\\scratch\\testFile", tableView);
+        FileManager.openFileLoadData("C:\\Users\\Jose\\IdeaProjects\\Application part 2\\scratch\\testFile", tableView, dataList);
     }
 
     @Test

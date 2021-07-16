@@ -1,25 +1,20 @@
 package ucf.assignments;
 
-import javafx.scene.control.ComboBox;
-
-import java.time.LocalDate;
 
 public class Item {
 
     public String done;
     public String description;
-    public LocalDate dueDate;
-    public ComboBox mark;
+    public String dueDate;
 
-    public Item(String done, String description, LocalDate dueDate) {
-        this.done = new String(done);
-        this.description = new String(description);
+
+    public Item(String done, String description, String dueDate) {
+        this.done = done;
+        this.description = description;
         this.dueDate = dueDate;
-        this.mark = new ComboBox();
     }
 
     public Item() {
-
     }
 
     public String getDone() {
@@ -38,19 +33,13 @@ public class Item {
         this.description = description;
     }
 
-    public LocalDate getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate() {
+    public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
     }
-
-    public ComboBox getMark() {
-        return mark;
-    }
-
-    public void setMark(ComboBox mark) {
-        this.mark = mark;
-    }
 }
+
+

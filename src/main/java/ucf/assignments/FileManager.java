@@ -1,27 +1,24 @@
 package ucf.assignments;
 
+import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
 
 import java.io.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class FileManager {
 
-    // lookup a .txt file location, and return its absolute path
-    // using JavaFX FileChooser
+    /* lookup a .txt file location, and return its absolute path
+     using JavaFX FileChooser */
     public static String fileChooser() {
         // open .txt file
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files (*.txt)", "*.txt"));
         File file = fc.showOpenDialog(null);
         String absolutePath = null;
-
 
         if (file != null) {
             absolutePath = file.getAbsolutePath();
@@ -31,15 +28,20 @@ public class FileManager {
     }
 
     // open a File and Load data in file
-    public static void openFileLoadData(String absolutePath, TableView<Item> tableView) {
+    public static void openFileLoadData(String absolutePath, TableView<Item> tableView, ObservableList<Item> dataList) {
         ArrayList<String> arrList = getDataFromFile(absolutePath);
+        ObservableList<Item> selectedRows, allItems;
+        allItems = tableView.getItems();
 
+        allItems.remove(0, allItems.size());
+        dataList.remove(0, dataList.size());
         // Creates an Item and adds it to the Table
-        for (int i = 0; i < arrList.size(); i+=3) {
+        for (int i = 0; i < arrList.size(); i += 3) {
             Item newItem = new Item(arrList.get(i),
-                                    arrList.get(i + 1),
-                                    LocalDate.parse(arrList.get(i + 2).replace(" ", "")));
+                    arrList.get(i + 1),
+                    arrList.get(i + 2).replace(" ", ""));
             tableView.getItems().add(newItem);
+            dataList.add(newItem);
         }
     }
 
@@ -49,11 +51,11 @@ public class FileManager {
         ArrayList<String> dataListFinal = new ArrayList<>();
 
         // Given an ArrayList Format to another ArrayList
-        for (int i = 0; i < dataList.size(); i++) {
-            String[] res = dataList.get(i).split("[,]", 0);
-            for (int j = 0; j < res.length; j++) {
-                if (!res[j].equals(" ")) {
-                    dataListFinal.add(res[j]);
+        for (String s : dataList) {
+            String[] res = s.split("[,]", 0);
+            for (String re : res) {
+                if (!re.equals(" ")) {
+                    dataListFinal.add(re);
                 }
             }
         }
@@ -100,7 +102,6 @@ public class FileManager {
         }
     }
 
-
     // get data from tableView
     public static List<List<String>> getDataFromTableView(TableView tableView) {
         Item item;
@@ -112,8 +113,10 @@ public class FileManager {
             arrList.add(new ArrayList<>());
             arrList.get(i).add(item.getDone());
             arrList.get(i).add(item.getDescription());
-            arrList.get(i).add(item.getDueDate().toString());
+            arrList.get(i).add(item.getDueDate());
         }
         return arrList;
     }
+
+
 }
