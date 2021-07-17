@@ -9,7 +9,6 @@ class TodoManager {
 class TodoController{
     model: TodoListModel
     'javafx event handlers
-    initialize()
     saveListItems()
     loadListItems()
     clearItem()
@@ -20,8 +19,33 @@ class TodoController{
     removeItem()
     editDescription()
     editDueDate()
+    editDone()
     helpButton()
+    initialize()
+    getPeople()
 }
+
+class AlertManager {
+    alertDueDate()
+    alertDone()
+    alertDescription()
+    alertClear()
+}
+
+class ConditionsManager {
+    isClear()
+    validateDone()
+    validateDueDate()
+    validateDescription()
+}
+
+class DisplayManager {
+    getAll()
+    getCompleted()
+    getUncompleted()
+}
+
+
 
 class FileManager {
     fileChooser()
@@ -30,10 +54,6 @@ class FileManager {
     openFileSaveData()
     readFile()
     getDataFromTableView()
-}
-
-class TableManager{
-    isClear()
 }
 
 class Item {
@@ -45,9 +65,14 @@ class Item {
 org.javafx.Application <|- TodoManager
 TodoManager o--> TodoController
 TodoController <--o Item
-TodoController <--> FileManager
-TodoController <- TableManager
-Item o-> FileManager
+TodoController <-- FileManager
+TodoController <-- AlertManager
+TodoController <-- ConditionsManager
+TodoController <-- DisplayManager
+
+Item o--> FileManager
+Item o--> ConditionsManager
+Item o--> DisplayManager
 
 
 @enduml

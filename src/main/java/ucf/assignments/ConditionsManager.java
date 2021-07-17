@@ -3,7 +3,6 @@ package ucf.assignments;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
