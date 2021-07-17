@@ -61,7 +61,7 @@ public class TodoController implements Initializable {
     private TableColumn<Item, String> dueDateColumn;
 
     // variable for new Item Object
-
+    @FXML
     private TextField descriptionTextField;
     @FXML
     private DatePicker dueDateDatePicker;
